@@ -6,7 +6,10 @@ beforeEach(() => {
 });
 
 test('should allow duplicate course title', () => {
-  const result = storage.create('courses', { title: 'Math', teacher: 'Someone' });
+  const result = storage.create('courses', {
+    title: 'Math',
+    teacher: 'Someone',
+  });
   expect(result.title).toBe('Math');
 });
 
@@ -17,13 +20,19 @@ test('should list seeded students', () => {
 });
 
 test('should create a new student', () => {
-  const result = storage.create('students', { name: 'David', email: 'david@example.com' });
+  const result = storage.create('students', {
+    name: 'David',
+    email: 'david@example.com',
+  });
   expect(result.name).toBe('David');
   expect(storage.list('students').length).toBe(4);
 });
 
 test('should not allow duplicate student email', () => {
-  const result = storage.create('students', { name: 'Eve', email: 'alice@example.com' });
+  const result = storage.create('students', {
+    name: 'Eve',
+    email: 'alice@example.com',
+  });
   expect(result.error).toBe('Email must be unique');
 });
 
@@ -44,3 +53,6 @@ test('should allow more than 3 students in a course', () => {
   const result = storage.enroll(4, course.id);
   expect(result.success).toBe(true);
 });
+
+
+// ajouter 5 test unitaire et integration 

@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+
+  //use rbnb style
+  "extends": ["airbnb-base"],
+  "rules":{
+    "no-unused-vars": "warn",
+    "eqeqeq": "error",
+    "curly": "error",
+    "no-undef": "error",
+    "no-empty-function": "warn",
+    "consistent-return": "warn",
+    "camelcase": "warn",
+    "no-unreachable": "error"
+  }
+}
+
