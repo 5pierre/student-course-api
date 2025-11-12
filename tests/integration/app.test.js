@@ -136,5 +136,48 @@ describe('Student-Course API integration', () => {
     expect(res.statusCode).toBe(404);
     expect(res.body.error).toBe('Course not found');
   });
+
+  //pour courses.js 
+  test('DELETE /courses/:courseId/students/:studentId should unenroll a student from a course', async () => {
+    const courses = await request(app).get('/courses');
+    const students = await request(app).get('/students');
+    const courseId = courses.body.courses[0].id;
+    const studentId = students.body.students[0].id;
+
+    await request(app).post(`/courses/${courseId}/students/${studentId}`);
+    const res = await request(app).delete(`/courses/${courseId}/students/${studentId}`);
+    expect(res.statusCode).toBe(204);
+  });  
+
+   test('GET /courses should filter courses by teacher', async () => {
+    const res = await request(app).get('/courses?teacher=Dr');
+    expect(res.statusCode).toBe(200);
+    expect(res.body.courses.length).toBeGreaterThan(0);
+  });
+
+    test('DELETE /students/:id should return error when student is enrolled', async () => {
+    const courses = await request(app).get('/courses');
+    const courseId = courses.body.courses[0].id;
+    const studentId = 1;
+    await request(app).post(`/courses/${courseId}/students/${studentId}`);
+    const res = await request(app).delete(`/students/${studentId}`);
+    expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBeDefined();
+  });
   
+  test('DELETE /students/:id retourne 400 si l’étudiant est inscrit à un cours', async () => {
+    await request(app).post('/students').send({
+      name: 'a',
+      email: 'a@example.com',
+    });
+    await request(app).post('/courses').send({
+      title: 'nouveau cours',
+      teacher: 'prof a',
+    });
+    await request(app).post('/courses/1/students/4'); // On inscrit l’étudiant au cours
+
+    const res = await request(app).delete('/students/4');
+    expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBe('Cannot delete student: enrolled in a course');
+  });
 });
