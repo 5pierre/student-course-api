@@ -21,6 +21,6 @@
     "no-unreachable": "error",
     "no-plusplus": "off",
     "no-console": "off",     
-    "import/order": "off",
+    "import/order": "off"
   }
 }
