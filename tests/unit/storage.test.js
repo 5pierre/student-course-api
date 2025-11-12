@@ -42,6 +42,19 @@ test('should delete a student', () => {
   expect(result).toBe(true);
 });
 
+// test deplacé pour eviter un conflit avec le test 'should return error when deleting a student enrolled in a course'
+test('getCourseStudents should return students enrolled in a course', () => {
+  const students = storage.list('students');
+  const courses = storage.list('courses');
+  storage.enroll(students[0].id, courses[0].id);
+  storage.enroll(students[1].id, courses[0].id);
+
+  const enrolledStudents = storage.getCourseStudents(courses[0].id);
+  expect(enrolledStudents.length).toBe(2);
+  expect(enrolledStudents.map(s => s.name)).toEqual(['Alice', 'Bob']);
+
+});
+
 test('shouldnt allow more than 3 students in a course', () => {
   const students = storage.list('students');
   const course = storage.list('courses')[0];
@@ -60,6 +73,7 @@ test('shouldnt allow more than 3 students in a course', () => {
   expect(result.error).toBe('Course is full');
 });
 
+// new test
 test('should return error when deleting non-existent course', () => {
   const result = storage.remove('courses', 999);
   expect(result).toBe(false);
@@ -89,3 +103,24 @@ test('should return error when unenrolling non-existent enrollment', () => {
   const result = storage.unenroll(1, 999);
   expect(result.error).toBe('Enrollment not found');
 });
+
+// test supplementaire 
+test('should return error when deleting a student enrolled in a course', () => {
+  const students = storage.list('students');
+  const courses = storage.list('courses');
+  storage.enroll(students[0].id, courses[0].id);
+  const result = storage.remove('students', students[0].id);
+  expect(result.error).toBe('Cannot delete student: enrolled in a course');
+});
+
+test('getStudentCourses should return enrolled courses for a student', () => {
+  const students = storage.list('students');
+  const courses = storage.list('courses');
+  storage.enroll(students[0].id, courses[0].id);
+  storage.enroll(students[0].id, courses[1].id);
+
+  const enrolledCourses = storage.getStudentCourses(students[0].id);
+  expect(enrolledCourses.length).toBe(2);
+  expect(enrolledCourses.map(c => c.title)).toEqual(['Math', 'Physics']);
+});
+
