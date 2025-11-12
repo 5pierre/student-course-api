@@ -22,19 +22,19 @@ describe('Student-Course API integration', () => {
     expect(res.body.name).toBe('David');
   });
 
-  test('POST /students should not allow duplicate email', async () => {
+  test('POST /students shouldnt not allow duplicate email', async () => {
     const res = await request(app)
       .post('/students')
       .send({ name: 'Eve', email: 'alice@example.com' });
     expect(res.statusCode).toBe(400); //changement de 201 en 400
   });
 
-  test('DELETE /courses/:id should delete a course even if students are enrolled', async () => {
+  test('DELETE /courses/:id shouldnt delete a course if students are enrolled', async () => {
     const courses = await request(app).get('/courses');
     const courseId = courses.body.courses[0].id;
     await request(app).post(`/courses/${courseId}/students/1`);
     const res = await request(app).delete(`/courses/${courseId}`);
-    expect(res.statusCode).toBe(400);
+    expect(res.statusCode).toBe(400); //changement de 204 en 400
   });
 });
 

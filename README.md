@@ -27,9 +27,9 @@ L’objectif est d’améliorer la qualité du code et la couverture de tests à
 
 ## À faire
 
-- Corriger et compléter les tests existants.
-- Ajouter de nouveaux tests pour améliorer la couverture.
-- Mettre en place ESLint et Prettier.
+- Corriger et compléter les tests existants. ✅
+- Ajouter de nouveaux tests pour améliorer la couverture.✅
+- Mettre en place ESLint et Prettier. ✅
 - Intégrer la vérification de qualité et les tests dans la CI.
 - Finaliser la documentation Swagger.
 - Intégrer Codacy comme outil d’analyse statique
