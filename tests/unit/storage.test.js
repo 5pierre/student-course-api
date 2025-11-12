@@ -61,3 +61,33 @@ test('shouldnt allow more than 3 students in a course', () => {
 });
 
 // ajouter 5 test unitaire et integration
+
+test('should return error when deleting non-existent course', () => {
+  const result = storage.remove('courses', 999);
+  expect(result).toBe(false);
+});
+
+test('should return a student by id', () => {
+  const students = storage.list('students');
+  const student = storage.get('students', students[0].id);
+  expect(student.name).toBe('Alice');
+});
+
+test('should not enroll non-existent student', () => {
+  const courses = storage.list('courses');
+  const result = storage.enroll(999, courses[0].id);
+  expect(result.error).toBe('Student not found');
+});
+
+test('should unenroll a student from a course', () => {
+  const students = storage.list('students');
+  const courses = storage.list('courses');
+  storage.enroll(students[0].id, courses[0].id);
+  const result = storage.unenroll(students[0].id, courses[0].id);
+  expect(result.success).toBe(true);
+});
+
+test('should return error when unenrolling non-existent enrollment', () => {
+  const result = storage.unenroll(1, 999); 
+  expect(result.error).toBe('Enrollment not found');
+});
