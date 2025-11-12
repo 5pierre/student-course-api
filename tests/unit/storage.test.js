@@ -61,6 +61,3 @@ test('shouldnt allow more than 3 students in a course', () => {
 });
 
 // ajouter 5 test unitaire et integration
-
-
-

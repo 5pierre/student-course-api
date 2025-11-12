@@ -39,3 +39,37 @@ describe('Student-Course API integration', () => {
 });
 
 // ajouter 5 test unitaire et integration
+
+test('GET /students/:id should return a student', async () => {
+  const res = await request(app).get('/students/1');
+  expect(res.statusCode).toBe(200);
+  expect(res.body.student.name).toBe('Alice');
+});
+
+test('GET /students/:id should return 404 if student not found', async () => {
+  const res = await request(app).get('/students/999');
+  expect(res.statusCode).toBe(404);
+  expect(res.body.error).toBe('Student not found');
+});
+
+test('PUT /students/:id should update a student', async () => {
+  const res = await request(app)
+    .put('/students/1')
+    .send({ name: 'Alice Smith', email: 'alice.smith@example.com' });
+  expect(res.statusCode).toBe(200);
+  expect(res.body.name).toBe('Alice Smith');
+});
+
+test('PUT /students/:id should return 404 if student not found', async () => {
+  const res = await request(app)
+    .put('/students/999')
+    .send({ name: 'Unknown', email: 'unknown@example.com' });
+  expect(res.statusCode).toBe(404);
+  expect(res.body.error).toBe('Student not found');
+});
+
+test('DELETE /students/:id should return 404 if student not found', async () => {
+  const res = await request(app).delete('/students/999');
+  expect(res.statusCode).toBe(404);
+  expect(res.body.error).toBe('Student not found');
+});
