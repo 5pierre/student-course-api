@@ -36,12 +36,16 @@ function create(collection, payload) {
 function remove(collection, id) {
   if (collection === 'students') {
     if (data.enrollments.find((e) => e.studentId === Number(id))) {
-      return { error: 'Cannot delete student: enrolled in a course' };
+      return {
+        error: 'Cannot delete student: enrolled in a course',
+      };
     }
   }
   if (collection === 'courses') {
     if (data.enrollments.find((e) => e.courseId === Number(id))) {
-      return { error: 'Cannot delete course: students are enrolled' };
+      return {
+        error: 'Cannot delete course: students are enrolled',
+      };
     }
   }
   const idx = data[collection].findIndex((it) => it.id === Number(id));
@@ -60,16 +64,15 @@ function enroll(studentId, courseId) {
   // Vérifie que l’étudiant n’est pas déjà inscrit
   if (
     data.enrollments.find(
-      (e) =>
-        e.studentId === Number(studentId) && e.courseId === Number(courseId)
+      (e) => e.studentId === Number(studentId) && e.courseId === Number(courseId),
     )
   ) {
-    return { error: 'Student already enrolled in this course' };
+    return {
+      error: 'Student already enrolled in this course',
+    };
   }
   // Vérifie que le cours n’a pas plus de 3 étudiants
-  const enrolledCount = data.enrollments.filter(
-    (e) => e.courseId === Number(courseId)
-  ).length;
+  const enrolledCount = data.enrollments.filter((e) => e.courseId === Number(courseId)).length;
   if (enrolledCount >= 3) return { error: 'Course is full' };
   data.enrollments.push({
     studentId: Number(studentId),
@@ -80,7 +83,7 @@ function enroll(studentId, courseId) {
 
 function unenroll(studentId, courseId) {
   const idx = data.enrollments.findIndex(
-    (e) => e.studentId === Number(studentId) && e.courseId === Number(courseId)
+    (e) => e.studentId === Number(studentId) && e.courseId === Number(courseId),
   );
   if (idx === -1) return { error: 'Enrollment not found' };
   data.enrollments.splice(idx, 1);
@@ -109,13 +112,31 @@ function reset() {
 
 function seed() {
   // Ajoute quelques étudiants
-  create('students', { name: 'Alice', email: 'alice@example.com' });
-  create('students', { name: 'Bob', email: 'bob@example.com' });
-  create('students', { name: 'Charlie', email: 'charlie@example.com' });
+  create('students', {
+    name: 'Alice',
+    email: 'alice@example.com',
+  });
+  create('students', {
+    name: 'Bob',
+    email: 'bob@example.com',
+  });
+  create('students', {
+    name: 'Charlie',
+    email: 'charlie@example.com',
+  });
   // Ajoute quelques cours
-  create('courses', { title: 'Math', teacher: 'Mr. Smith' });
-  create('courses', { title: 'Physics', teacher: 'Dr. Brown' });
-  create('courses', { title: 'History', teacher: 'Ms. Clark' });
+  create('courses', {
+    title: 'Math',
+    teacher: 'Mr. Smith',
+  });
+  create('courses', {
+    title: 'Physics',
+    teacher: 'Dr. Brown',
+  });
+  create('courses', {
+    title: 'History',
+    teacher: 'Ms. Clark',
+  });
 }
 
 module.exports = {

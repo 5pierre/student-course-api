@@ -53,4 +53,3 @@ npm run dev
 ---
 
 **À vous de jouer pour améliorer la qualité et la fiabilité du projet !**
-

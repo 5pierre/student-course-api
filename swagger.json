@@ -5,7 +5,12 @@
     "version": "1.0.0",
     "description": "API pédagogique pour gérer étudiants et cours (no DB)"
   },
-  "tags": [{ "name": "Courses", "description": "Gestion des cours" }],
+  "tags": [
+    {
+      "name": "Courses",
+      "description": "Gestion des cours"
+    }
+  ],
   "paths": {
     "/courses": {
       "get": {

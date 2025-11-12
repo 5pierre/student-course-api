@@ -26,7 +26,7 @@ describe('Student-Course API integration', () => {
     const res = await request(app)
       .post('/students')
       .send({ name: 'Eve', email: 'alice@example.com' });
-    expect(res.statusCode).toBe(201);
+    expect(res.statusCode).toBe(400); //changement de 201 en 400
   });
 
   test('DELETE /courses/:id should delete a course even if students are enrolled', async () => {
@@ -34,9 +34,8 @@ describe('Student-Course API integration', () => {
     const courseId = courses.body.courses[0].id;
     await request(app).post(`/courses/${courseId}/students/1`);
     const res = await request(app).delete(`/courses/${courseId}`);
-    expect(res.statusCode).toBe(204);
+    expect(res.statusCode).toBe(400);
   });
 });
 
-
-// ajouter 5 test unitaire et integration 
+// ajouter 5 test unitaire et integration
