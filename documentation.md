@@ -1,101 +1,5 @@
 # Documentation Technique Student-Course API
 
-
-## Installation et configuration
-### Prérequis
-```
-Node.js (version 14 ou supérieure)
-npm (gestionnaire de paquets Node.js)
-```
-
-### Setup
-
-```bash
-npm install
-npm run dev
-```
-
-### Documentation Swagger
-Accès à la documentation interactive
-La documentation Swagger est accessible à l'adresse :
-```
- http://localhost:3000/api-docs
- ```
-
-### Tags disponibles
-**Students** : Gestion des étudiants
-**Courses** : Gestion des cours
-**routes/Courses** : Gestion des inscriptions entre les étudiants et les cours
-
-## API Endpoints
-
-### Students
-GET
-/students
-Liste des étudiants
-
-
-POST
-/students
-Créer un nouvel étudiant
-
-
-GET
-/students/{id}
-Récupérer un étudiant par ID
-
-
-DELETE
-/students/{id}
-Supprimer un étudiant
-
-
-PUT
-/students/{id}
-Mettre à jour un étudiant
-### Courses
-GET
-/courses
-Liste des cours
-
-
-POST
-/courses
-Créer un cours
-
-
-GET
-/courses/{id}
-Récupérer un cours
-
-
-DELETE
-/courses/{id}
-Supprimer un cours
-
-
-PUT
-/courses/{id}
-Met à jour un cours
-
-
-### routes/Courses
-POST
-/{id_course}/courses/{id_student}
-Create a new course
-
-
-DELETE
-/courses/{courseId}/students/{studentId}
-Désinscrire un étudiant d’un cours
-
-
-
-
-
-
-# Documentation Technique Student-Course API
-
 ## 📋 Table des matières
 - [Présentation](#présentation)
 - [Démarrage rapide](#-démarrage-rapide)
@@ -150,6 +54,7 @@ L'API sera accessible sur : **http://localhost:3000**
 
 ### Structure du projet
 ```
+
 student-course-api/
 ├── src/
 │   ├── app.js                     # Configuration Express et middleware
@@ -169,6 +74,7 @@ student-course-api/
 ├── swagger.json                   # Documentation API OpenAPI 3.0
 ├── package.json
 └── README.md
+
 ```
 
 ### Technologies utilisées
@@ -478,6 +384,7 @@ npm test -- --watch
 
 ### Couverture actuelle
 ```
+
 ------------------------|---------|----------|---------|---------|-------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                                                                                           
 ------------------------|---------|----------|---------|---------|-------------------
@@ -493,6 +400,7 @@ All files               |    91.2 |       83 |   86.36 |   94.91 |
  src/services           |   98.57 |    97.05 |     100 |     100 |                  
   storage.js            |   98.57 |    97.05 |     100 |     100 | 60               
 ------------------------|---------|----------|---------|---------|-------------------
+
 ```
 
 ### Types de tests
