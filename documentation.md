@@ -9,6 +9,7 @@
 - [API Endpoints](#-api-endpoints)
 - [Exemples d'utilisation](#-exemples-dutilisation)
 - [Tests](#-tests)
+- [Checklist](#-checklist)
 
 ---
 
@@ -409,19 +410,11 @@ All files               |    91.2 |       83 |   86.36 |   94.91 |
 
 ---
 
+## Checklist:
 
-## infos de développement
-
-### Seed Data
-Au démarrage, l'API charge des données de test :
-- 3 étudiants (Alice, Bob, Charlie)
-- 2 cours (Math, Physics)
-
-### Service Storage
-Le service `storage.js` gère :
-- CRUD pour students et courses
-- Relations entre étudiants et cours
-- Validation des contraintes d'unicité
-- Auto-incrémentation des IDs
+- [ ] Tests passants (35/35)
+- [ ] Couverture > 90% (91.2%)
+- [ ] Linting sans erreurs
+- [ ] Documentation Swagger complète  
 
 ---
