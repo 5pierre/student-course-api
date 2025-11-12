@@ -10,7 +10,7 @@ test('shouldnt allow duplicate course title', () => {
     title: 'Math',
     teacher: 'Someone',
   });
-  expect(result.error).toBe('Course title must be unique'); //change undefine avec "Course title must be unique"
+  expect(result.error).toBe('Course title must be unique');
 });
 
 test('should list seeded students', () => {
@@ -57,10 +57,8 @@ test('shouldnt allow more than 3 students in a course', () => {
   storage.enroll(students[1].id, course.id);
   storage.enroll(students[2].id, course.id);
   const result = storage.enroll(4, course.id);
-  expect(result.error).toBe('Course is full'); //change true avec Course is full
+  expect(result.error).toBe('Course is full');
 });
-
-// ajouter 5 test unitaire et integration
 
 test('should return error when deleting non-existent course', () => {
   const result = storage.remove('courses', 999);
@@ -88,6 +86,6 @@ test('should unenroll a student from a course', () => {
 });
 
 test('should return error when unenrolling non-existent enrollment', () => {
-  const result = storage.unenroll(1, 999); 
+  const result = storage.unenroll(1, 999);
   expect(result.error).toBe('Enrollment not found');
 });
