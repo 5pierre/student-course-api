@@ -101,6 +101,15 @@ git clone <repository-url>
 cd student-course-api
 ```
 
+1.5 **installer nodejs et npm**
+```bash
+sudo apt install nodejs npm
+```
+
+```powershell
+choco install nodejs
+```
+
 2. **Installer les dépendances**
 ```bash
 npm install

@@ -21,12 +21,13 @@ describe('Student-Course API integration', () => {
     expect(res.statusCode).toBe(201);
     expect(res.body.name).toBe('David');
   });
-
+// update
   test('POST /students shouldnt not allow duplicate email', async () => {
     const res = await request(app)
       .post('/students')
       .send({ name: 'Eve', email: 'alice@example.com' });
     expect(res.statusCode).toBe(400);
+    expect(res.body.error).toBe('Email must be unique');
   });
 
   test('DELETE /courses/:id shouldnt delete a course if students are enrolled', async () => {
@@ -113,7 +114,7 @@ describe('Student-Course API integration', () => {
 
   test('PUT /courses/:id should not allow duplicate course title', async () => {
     const courses = await request(app).get('/courses');
-    const course1Id = courses.body.courses[0].id;
+    // const course1Id = courses.body.courses[0].id;
     const course2Id = courses.body.courses[1].id;
 
     const res = await request(app)

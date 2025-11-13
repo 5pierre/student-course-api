@@ -103,8 +103,7 @@ test('should return error when unenrolling non-existent enrollment', () => {
   const result = storage.unenroll(1, 999);
   expect(result.error).toBe('Enrollment not found');
 });
-
-// test supplementaire 
+ 
 test('should return error when deleting a student enrolled in a course', () => {
   const students = storage.list('students');
   const courses = storage.list('courses');

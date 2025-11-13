@@ -34,7 +34,7 @@ L’objectif est d’améliorer la qualité du code et la couverture de tests à
 - Finaliser la documentation Swagger. ✅
 - Intégrer Codacy comme outil d’analyse statique. ✅
 - Ajouter un template de Pull Request (.github/pull_request_template.md). ?✅
-- Produire une Pull Request bien documentée avec des messages de commits pertinents.
+- Produire une Pull Request bien documentée avec des messages de commits pertinents.✅
 - Rédiger une documentation technique complète (Markdown ou générateur).✅
 - Fournir un dépôt Git propre, lisible et bien organisé. ✅
 
