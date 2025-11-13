@@ -4,7 +4,7 @@ beforeEach(() => {
   storage.reset();
   storage.seed();
 });
-
+// update
 test('shouldnt allow duplicate course title', () => {
   const result = storage.create('courses', {
     title: 'Math',
@@ -54,7 +54,7 @@ test('getCourseStudents should return students enrolled in a course', () => {
   expect(enrolledStudents.map(s => s.name)).toEqual(['Alice', 'Bob']);
 
 });
-
+// update
 test('shouldnt allow more than 3 students in a course', () => {
   const students = storage.list('students');
   const course = storage.list('courses')[0];

@@ -30,6 +30,7 @@ describe('Student-Course API integration', () => {
     expect(res.body.error).toBe('Email must be unique');
   });
 
+// update
   test('DELETE /courses/:id shouldnt delete a course if students are enrolled', async () => {
     const courses = await request(app).get('/courses');
     const courseId = courses.body.courses[0].id;
