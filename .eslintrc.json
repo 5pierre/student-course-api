@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "strict": "off",
+    "no-var": "error",
+    "prefer-const": "warn",
+    "no-unused-vars": "warn",
+    "no-empty-function": "warn",
+    "consistent-return": "warn",
+    "camelcase": "warn",
+    "no-shadow": "off",
+    "no-unreachable": "error",
+    "no-plusplus": "off",
+    "no-console": "off",     
+    "import/order": "off"
+  }
+}
